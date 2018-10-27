@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  api:
+    build: ./api
+    volumes:
+      - ./api:/usr/local/app
+    links:
+      - servicea
+      - serviceb
+    ports:
+      - "3000:3000"
+
+  servicea:
+    build: ./servicea
+    volumes:
+      - ./servicea:/usr/local/app
+    command: "npm start"
+
+  serviceb:
+    build: ./serviceb
+    volumes:
+      - ./serviceb:/usr/local/app
+    command: "npm start"
